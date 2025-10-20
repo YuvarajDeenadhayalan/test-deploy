@@ -1,0 +1,52 @@
+name: Multi-Env Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-dev:
+    name: Deploy to Dev
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build for dev
+        run: echo "🛠️ Building for Dev environment..."
+
+      - name: Mock deploy dev
+        run: echo "🚀 Deploying to Dev environment..."
+
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    environment: staging
+    needs: deploy-dev   # runs after dev
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build for staging
+        run: echo "🛠️ Building for Staging environment..."
+
+      - name: Mock deploy staging
+        run: echo "🚀 Deploying to Staging environment..."
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    environment: production
+    needs: deploy-staging   # runs after staging
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build for production
+        run: echo "🛠️ Building for Production environment..."
+
+      - name: Mock deploy production
+        run: echo "🚀 Deploying to Production environment..."
