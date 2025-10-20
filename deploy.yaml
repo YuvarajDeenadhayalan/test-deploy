@@ -1,0 +1,37 @@
+name: Mock Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select environment to simulate deployment"
+        required: true
+        type: choice
+        options:
+          - dev
+          - staging
+          - production
+jobs:
+  mock-deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Simulate build
+        run: | echo "Building project for ${{ github.event.inputs.environment }}.."
+        sleep 2
+        echo "Build complete"
+
+      - Mock deployment
+        run: | echo "Starting mock deployment to ${{ github.event.inputs.environment }}.."
+        sleep 2
+        echo "Deployment simulation finished successfully"
+
+      - name: Summary
+        run: | echo "Deployment summary:"
+        echo "Environment: ${{ github.event.inputs.environment }}"
+        echo "-Branch: ${{ github.ref_name }}"
+        
