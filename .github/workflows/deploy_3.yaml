@@ -20,8 +20,8 @@ jobs:
     if: ${{ github.event.inputs.target_env == 'dev' }}
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    #  - name: Checkout code
+     #   uses: actions/checkout@v4
 
       - name: Mock deploy to dev
         run: |
@@ -36,8 +36,8 @@ jobs:
     if: ${{ github.event.inputs.target_env == 'staging' }}
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      #- name: Checkout code
+       # uses: actions/checkout@v4
 
       - name: Mock deploy to staging
         run: |
@@ -52,8 +52,8 @@ jobs:
     if: ${{ github.event.inputs.target_env == 'production' }}
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      #- name: Checkout code
+       # uses: actions/checkout@v4
 
       - name: Mock deploy to production
         run: |
